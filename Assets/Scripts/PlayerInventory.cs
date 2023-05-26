@@ -37,10 +37,10 @@ public class PlayerInventory : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         inventoryRect = new RectInt(new Vector2Int(0, 0), new Vector2Int(width, height));
         inventoryGrid = root.Q<GridElement>("InventoryGrid");
-        var inventorySlots = inventoryGrid.Query<GridSlotElement>().Build();
-        foreach(GridSlotElement slot in inventorySlots)
+        var slotElements = inventoryGrid.Query<GridSlotElement>().Build();
+        foreach(GridSlotElement slot in slotElements)
         {
-            this.inventorySlots.Add(slot.Position, slot);
+            inventorySlots.Add(slot.Position, slot);
             slot.OnPointerDown += Slot_OnPointerDown;
             slot.OnPointerOver += Slot_OnPointerOver;
         }
@@ -144,15 +144,15 @@ public class PlayerInventory : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                Vector2Int pos = new Vector2Int(x, y);
-                RectInt newSpace = new RectInt(pos, size);
+                Vector2Int position = new Vector2Int(x, y);
+                RectInt rect = new RectInt(position, size);
 
-                if (!IsFitInInventory(newSpace)) 
+                if (!IsFitInInventory(rect)) 
                 {
                     continue;
                 }
 
-                emptySpace = newSpace;
+                emptySpace = rect;
                 return true;
             }
         }
@@ -175,45 +175,51 @@ public class PlayerInventory : MonoBehaviour
     {
         if (inventoryMode == InventoryMode.Default)
         {
+            // 인벤토리 내 게임 아이템을 클릭했을 때 
+            // 게임 아이템을 든다.
             PickGameItem(slot.Position);
             inventoryMode = InventoryMode.Picked;
         }
         else if(inventoryMode == InventoryMode.Picked)
         {
+            // 게임아이템을 든 채로 슬롯을 클릭했을 때
             RectInt rect = pickedInventoryItem.rect;
             rect.x = slot.Position.x - rect.width / 2;
             rect.y = slot.Position.y - rect.height/ 2;
-            int overlapCount = 0;
+            int overlapGameItemCount = 0;
             bool overlaps = false;
             GameItem overlappedGameItem = null;
+            // 클릭한 곳이 인벤토리를 벗어나면 안된다.
+            if (!IsInsideInventory(rect))
+            {
+                return;
+            }
+            // 겹치는 게임아이템이 2개 이상이면 안된다.
             foreach (var item in inventoryGameItems)
             {
                 if (item.Value.rect.Overlaps(rect))
                 {
                     overlaps = true;
                     overlappedGameItem = item.Key;
-                    overlapCount++;
+                    overlapGameItemCount++;
                 }
             }
-            if (overlapCount >= 2) return;
+            if (overlapGameItemCount >= 2)
+            {
+                return;
+            }
+
+            ResetAllSlotsColor();
             if (overlaps)
             {
-                inventoryGameItems.Add(pickedInventoryItem.GameItem, pickedInventoryItem);
-                pickedInventoryItem.Deselect();
-                pickedInventoryItem.SetPosition(rect.position);
-                pickedInventoryItem = default;
-                pointerFollowingObject.Clear();
-                pointerFollowingObject = null;
+                // 겹치는 게임아이템과 맞바꿔 든다.
+                PutPickedGameItemAt(rect);
                 PickGameItem(overlappedGameItem);
             }
             else
             {
-                inventoryGameItems.Add(pickedInventoryItem.GameItem, pickedInventoryItem);
-                pickedInventoryItem.Deselect();
-                pickedInventoryItem.SetPosition(rect.position);
-                pickedInventoryItem = default;
-                pointerFollowingObject.Clear();
-                pointerFollowingObject = null;
+                // 빈 곳에 게임아이템을 내려놓는다.
+                PutPickedGameItemAt(rect);
                 inventoryMode = InventoryMode.Default;
             }
         }
@@ -251,6 +257,15 @@ public class PlayerInventory : MonoBehaviour
             }
             
         }
+    }
+    private void PutPickedGameItemAt(RectInt rect)
+    {
+        inventoryGameItems.Add(pickedInventoryItem.GameItem, pickedInventoryItem);
+        pickedInventoryItem.Deselect();
+        pickedInventoryItem.SetPosition(rect.position);
+        pickedInventoryItem = default;
+        pointerFollowingObject.Clear();
+        pointerFollowingObject = null;
     }
 
     private void PickGameItem(GameItem gameItem)
