@@ -1,6 +1,7 @@
 # inventory
  Action RPG Inventory system implementation in Unity  
- - Custom editor window to manipulate item data (implemented using Unity UI Toolkit)  
+ - All UIs are implemented with Unity UI toolkit.
+ - Custom editor window to manipulate item data
  - Diablo-like inventory system (2D Rect based grid inventory)
  - Game item sprites were used as examples from Path of Exile.
 
