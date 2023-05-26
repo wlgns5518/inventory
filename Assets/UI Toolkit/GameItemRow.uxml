@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ItemRow" style="height: 45px; justify-content: center;">
+        <ui:VisualElement name="Row" style="flex-direction: row; align-items: center;">
+            <ui:VisualElement name="Icon" style="width: 32px; height: 32px; background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/buttonssosigninunity.png?fileID=2800000&amp;guid=f9161c6c9e06dc445ada3ee16d991f90&amp;type=3#buttonssosigninunity&apos;);" />
+            <ui:VisualElement style="flex-grow: 0; flex-direction: column; align-items: flex-start; padding-left: 5px;">
+                <ui:Label text="Unknown ID" display-tooltip-when-elided="true" name="Id" style="-unity-font-style: bold;" />
+                <ui:Label text="Unknown Item" display-tooltip-when-elided="true" name="Name" style="flex-grow: 1; padding-left: 1px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

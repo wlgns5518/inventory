@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/PlayerInventoryWindowStyle.uss?fileID=7433441132597879392&amp;guid=f372ffb7f1ef0924fae6b33004c4819f&amp;type=3#PlayerInventoryWindowStyle" />
+    <ui:VisualElement name="Container" style="margin-left: auto;">
+        <ui:VisualElement name="EquipmentContainer" style="height: 600px;">
+            <ui:VisualElement name="VisualElement" />
+        </ui:VisualElement>
+        <ui:VisualElement name="InventoryContainer">
+            <GridElement cell-size="72" columns="12" rows="5" name="InventoryGrid" style="border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; border-left-color: rgba(50, 50, 50, 255); border-right-color: rgba(50, 50, 50, 255); border-top-color: rgba(50, 50, 50, 255); border-bottom-color: rgba(50, 50, 50, 255);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

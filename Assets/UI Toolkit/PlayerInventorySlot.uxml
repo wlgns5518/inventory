@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="Container" style="width: 64px; height: 64px;">
+        <ui:VisualElement name="Slot" style="flex-grow: 1; border-left-color: rgb(100, 100, 100); border-right-color: rgb(100, 100, 100); border-top-color: rgb(100, 100, 100); border-bottom-color: rgb(100, 100, 100); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; background-color: rgb(20, 20, 20);" />
+    </ui:VisualElement>
+</ui:UXML>
