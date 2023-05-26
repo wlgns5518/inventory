@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f016e0cc783757b4b9638ba6c61b6a34, type: 3}
-  m_Name: New Item
+  m_Name: Helm
   m_EditorClassIdentifier: 
-  id: 3
-  icon: {fileID: 21300000, guid: 5d7061fc7da05ce44add317708ec7215, type: 3}
-  itemType: 7
+  id: 1
+  icon: {fileID: 21300000, guid: 08f9a0221bbd0b448a9d0a61f21a9a7f, type: 3}
+  itemType: 3
   usageType: 2
-  displayName: New Item
+  displayName: Helm
   description: 
   minPossibleDropLevel: 0
-  inventorySize: {x: 3, y: 1}
+  inventorySize: {x: 2, y: 2}
   possiblePrefixes: 
   possibleSuffixes: 

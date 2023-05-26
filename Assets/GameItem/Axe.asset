@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   id: 1
-  icon: {fileID: 21300000, guid: 81e9ec1d21e1f8f43a06e7e75c17fc37, type: 3}
+  icon: {fileID: 21300000, guid: afbb478041bc00040bb7a4d8ccfc4662, type: 3}
   itemType: 6
   usageType: 2
   displayName: Axe
-  description: 'asdasd
-
-'
+  description: 
   minPossibleDropLevel: 0
   inventorySize: {x: 2, y: 3}
   possiblePrefixes: 
