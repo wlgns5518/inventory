@@ -105,7 +105,7 @@ public class GameItemEditor : EditorWindow
     private void LoadAllGameItems()
     {
         gameItems.Clear();
-        var gameItemGUID = AssetDatabase.FindAssets("t:GameItem");
+        var gameItemGUID = AssetDatabase.FindAssets("t:GameItemData");
         foreach (var GUID in gameItemGUID)
         {
             var gameItemPath = AssetDatabase.GUIDToAssetPath(GUID);
